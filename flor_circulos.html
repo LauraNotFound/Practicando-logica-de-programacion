@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<h1>Cuadro de flores</h1>
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");
+	pincel.fillStyle = "lightgray";
+	pincel.fillRect(0,0,600,400);
+
+	function dibujarCirculo(x,y,radio,color) {
+		pincel.fillStyle = color;
+		pincel.beginPath();
+		pincel.arc(x,y,radio,0,2*3.14);
+		pincel.fill();
+	}
+
+	function dibujarFlor(x,y,r,h,p,c) {
+		dibujarCirculo(x+r,y-r,r,h);
+		dibujarCirculo(x-r,y-r,r,h);
+		dibujarCirculo(x+r,y+r,r,h);
+		dibujarCirculo(x-r,y+r,r,h);
+		dibujarCirculo(x,y,r,c);
+		dibujarCirculo(x-2*r,y,r,p);	
+		dibujarCirculo(x+2*r,y,r,p);
+		dibujarCirculo(x,y-2*r,r,p);
+		dibujarCirculo(x,y+2*r,r,p);
+		
+	}
+	var hojas = prompt("Ingrese el color de las hojas de la flor");
+	var petalos = prompt("Ingrese el color de los pétalos de la flor");
+	var centro = prompt("Ingrese el color del botón de la flor");
+	for (var i = 1 ; i <= 20; i = i+2) {
+		for (var j = 0; j < 12; j = j+2) {
+			dibujarFlor(30*i,50+30*j,10,hojas,petalos,centro);
+		}
+	}
+
+</script>
